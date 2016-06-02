@@ -1,10 +1,14 @@
 package com.giocode.example.listview
 
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
+import com.giocode.example.calculator.CalculatorActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,9 +26,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var recyclerView : RecyclerView = findViewById(R.id.recyclerView) as RecyclerView
+        var recyclerView: RecyclerView = findViewById(R.id.recyclerView) as RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.action_calculator -> startActivity(Intent(this, CalculatorActivity::class.java))
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
 
