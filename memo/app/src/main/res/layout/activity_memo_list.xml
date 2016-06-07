@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_memo_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.linecorp.memo.MemoListActivity">
+
+    <EditText
+        android:id="@+id/memolist_input_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/memolist_input_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/memolist_add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add+" />
+
+    <Button
+        android:id="@+id/memolist_sort_by_title_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sort by title" />
+
+    <Button
+        android:id="@+id/memolist_sort_by_created_time_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sort by created time" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/memolist_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
