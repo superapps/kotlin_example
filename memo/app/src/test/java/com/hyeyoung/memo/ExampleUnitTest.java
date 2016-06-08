@@ -1,4 +1,4 @@
-package com.linecorp.memo;
+package com.hyeyoung.memo;
 
 import org.junit.Test;
 
