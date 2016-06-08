@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.linecorp.memo.MemoListActivity">
+    tools:context="com.hyeyoung.memo.MemoListActivity">
 
     <EditText
         android:id="@+id/memolist_input_title"
