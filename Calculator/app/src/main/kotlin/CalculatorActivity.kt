@@ -6,7 +6,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.TextView
-import com.udojava.evalex.Expression
 
 class CalculatorActivity : AppCompatActivity() {
 
@@ -30,17 +29,5 @@ class CalculatorActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
             }
         })
-    }
-
-    inner class Calculator {
-        fun calculate(text: String): String {
-            var sumString: String = ""
-            val expression = Expression(text);
-            try {
-                sumString = expression.eval().toDouble().toString()
-            } catch (ignore: Exception) {
-            }
-            return sumString;
-        }
     }
 }
