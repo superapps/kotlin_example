@@ -39,9 +39,9 @@ class MemoListActivity : Activity() {
         findViewById(R.id.memolist_add_button).setOnClickListener {
             if (titleInputView.text.toString().length <= 0 || contentInputView.text.toString().length <= 0) {
                 Toast.makeText(this.application, "Please input title/content", Toast.LENGTH_SHORT).show()
-            } else {
-                memoDao.add(Memo(title = titleInputView.text.toString(), content = contentInputView.text.toString()))
+                return@setOnClickListener
             }
+            memoDao.add(Memo(title = titleInputView.text.toString(), content = contentInputView.text.toString()))
         }
 
         findViewById(R.id.memolist_sort_by_title_button).setOnClickListener {
@@ -88,7 +88,7 @@ class MemoListActivity : Activity() {
         }
     }
 
-    class OnDataChangeListenerImpl(val adapter : MemoListAdapter) : OnDataChageListener {
+    class OnDataChangeListenerImpl(val adapter: MemoListAdapter) : OnDataChageListener {
         override fun onDataChanged() {
             adapter.notifyDataSetChanged()
         }
