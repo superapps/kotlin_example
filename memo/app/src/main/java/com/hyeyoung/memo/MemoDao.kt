@@ -1,6 +1,7 @@
 package com.hyeyoung.memo
 
 import java.util.*
+import java.util.concurrent.locks.ReentrantLock
 import kotlin.properties.Delegates
 
 class MemoDao() {
@@ -13,16 +14,21 @@ class MemoDao() {
     }
 
     val list = ArrayList<Memo>()
+    val lock = ReentrantLock()
 
 
     fun add(memo: Memo) {
-        list.add(memo)
-        size = list.size
+        lock(lock) {
+            list.add(memo)
+            size = list.size
+        }
     }
 
     fun remove(position: Int) {
-        list.remove(list[position])
-        size = list.size
+        lock(lock) {
+            list.remove(list[position])
+            size = list.size
+        }
     }
 
     // TODO
@@ -31,13 +37,26 @@ class MemoDao() {
     //    }
 
     fun sortByTitle() {
-        list.sortBy { it.title }
-        size = list.size
+        lock(lock) {
+            list.sortBy { it.title }
+            size = list.size
+        }
     }
 
     fun sortByCreatedTime() {
-        list.sortBy { it.createdTime }
-        size = list.size
+        lock(lock) {
+            list.sortBy { it.createdTime }
+            size = list.size
+        }
+    }
+
+    fun <T> lock(lock: ReentrantLock, body: () -> T): T {
+        lock.lock()
+        try {
+            return body()
+        } finally {
+            lock.unlock()
+        }
     }
 
     interface OnDataChageListener {
