@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
+        android:singleLine="true"
         android:hint="1+1/3"
         />
     <TextView
