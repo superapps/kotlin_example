@@ -12,7 +12,7 @@ class HistoryAdapter(val context: Context, val history: History) : RecyclerView.
     override fun getItemCount() = history.list.size
 
     override fun onBindViewHolder(holder: HistoryViewHolder?, position: Int) {
-        holder?.update(history.list[position])
+        holder?.update(history.list[history.list.size - 1 - position])
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): HistoryViewHolder? {
