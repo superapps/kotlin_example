@@ -6,13 +6,13 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class CalculatorActivityByJava extends AppCompatActivity {
 
     private TextView resultText;
-    private Calculator calculator = new Calculator();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class CalculatorActivityByJava extends AppCompatActivity {
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
                 String s = new String(source.subSequence(start, end).toString());
                 if (s.contains("=")) {
-                    editText.setText(Double.toString(calculator.getLastEval()));
+                    editText.setText(Double.toString(Calculator.INSTANCE.getResult().getValue()));
                     return s.replace("=", "");
                 }
                 return source;
@@ -37,7 +37,7 @@ public class CalculatorActivityByJava extends AppCompatActivity {
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                resultText.setText(calculator.calculate(s.toString()));
+                resultText.setText(Calculator.INSTANCE.calculate(s.toString()));
             }
 
             @Override
