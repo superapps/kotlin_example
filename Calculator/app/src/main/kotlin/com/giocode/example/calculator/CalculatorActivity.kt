@@ -10,7 +10,6 @@ import android.text.TextWatcher
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.TextView
-import com.giocode.example.calculator.History.OnDataChangeListener
 
 class CalculatorActivity : AppCompatActivity() {
 
@@ -35,10 +34,8 @@ class CalculatorActivity : AppCompatActivity() {
         listView.layoutManager = LinearLayoutManager(this)
         listView.adapter = HistoryAdapter(this, history)
 
-        history.onDataChangeListener = object : OnDataChangeListener {
-            override fun onDataChanged() {
-                listView?.adapter.notifyDataSetChanged()
-            }
+        history.setOnDataChangeListener {
+            listView?.adapter.notifyDataSetChanged()
         }
     }
 

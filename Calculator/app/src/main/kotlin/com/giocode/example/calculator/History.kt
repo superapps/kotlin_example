@@ -25,6 +25,14 @@ class History {
         list = list
     }
 
+    fun setOnDataChangeListener(listener: () -> Unit) {
+        this.onDataChangeListener = object: OnDataChangeListener {
+            override fun onDataChanged() {
+                listener()
+            }
+        }
+    }
+
     interface OnDataChangeListener {
         fun onDataChanged()
     }
