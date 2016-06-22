@@ -4,7 +4,7 @@ import java.util.*
 import kotlin.properties.Delegates
 
 class History {
-    var list: LinkedList<Result> by Delegates.observable(LinkedList<Result>()) {
+    var list: ArrayList<Result> by Delegates.observable(ArrayList<Result>()) {
         d, old, new ->
         onDataChangeListener?.onDataChanged()
     }
@@ -12,10 +12,10 @@ class History {
 
     fun add(result: Result) {
         if (!list.contains(result)) {
-            list.add(0, result)
+            list.add(result)
         } else {
             list.remove(result)
-            list.add(0, result)
+            list.add(result)
         }
         list = list
     }
