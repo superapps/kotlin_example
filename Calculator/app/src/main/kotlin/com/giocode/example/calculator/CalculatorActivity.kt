@@ -35,8 +35,14 @@ class CalculatorActivity : AppCompatActivity() {
         listView.adapter = HistoryAdapter(this, history)
 
         history.setOnDataChangeListener {
-            listView?.adapter.notifyDataSetChanged()
+            listView.adapter?.notifyDataSetChanged()
         }
+
+//        history.onDataChangeListener = object : History.OnDataChangeListener {
+//            override fun onDataChanged() {
+//                listView.adapter?.notifyDataSetChanged()
+//            }
+//        }
     }
 
     private fun initEditText() {

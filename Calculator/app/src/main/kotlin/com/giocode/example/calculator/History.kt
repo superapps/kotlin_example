@@ -27,9 +27,7 @@ class History {
 
     fun setOnDataChangeListener(listener: () -> Unit) {
         this.onDataChangeListener = object: OnDataChangeListener {
-            override fun onDataChanged() {
-                listener()
-            }
+            override fun onDataChanged() = listener()
         }
     }
 
