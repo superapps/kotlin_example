@@ -51,6 +51,15 @@ class MemoListActivity : Activity() {
         findViewById(R.id.memolist_sort_by_created_time_button).setOnClickListener {
             memoDao.sortByCreatedTime();
         }
+
+        findViewById(R.id.memolist_transform_title_button).setOnClickListener {
+            memoDao.transformTitle {
+                if (!it.startsWith("Title :")) {
+                    return@transformTitle "Title : "+it
+                }
+                it
+            }
+        }
     }
 
     class MemoListAdapter(val context: Context, val memoDao: MemoDao) : RecyclerView.Adapter<MemoViewHolder>() {

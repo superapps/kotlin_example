@@ -31,10 +31,9 @@ class MemoDao() {
         }
     }
 
-    // TODO
-    //    fun getRecentMemoList(createdTime: Long) : List<Memo> = list.filter {
-    //
-    //    }
+    fun getRecentMemoList(createdTime: Long): List<Memo> = list.filter {
+        it.createdTime > createdTime
+    }
 
     fun sortByTitle() {
         lock(lock) {
@@ -46,6 +45,15 @@ class MemoDao() {
     fun sortByCreatedTime() {
         lock(lock) {
             list.sortBy { it.createdTime }
+            size = list.size
+        }
+    }
+
+    fun transformTitle(transform: (String) -> String) {
+        lock(lock) {
+            for (item in list) {
+                item.title = transform(item.title)
+            }
             size = list.size
         }
     }
