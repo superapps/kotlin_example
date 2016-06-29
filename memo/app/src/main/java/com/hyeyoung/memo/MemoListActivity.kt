@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.hyeyoung.memo.MemoDao.OnDataChageListener
 import kotlin.properties.Delegates
 
 class MemoListActivity : Activity() {
@@ -29,7 +28,11 @@ class MemoListActivity : Activity() {
     fun initUI() {
         val memoDao = MemoDao()
         adapter = MemoListAdapter(this, memoDao)
-        memoDao.onDataChangeListener = OnDataChangeListenerImpl(adapter)
+        memoDao.onDataChangeListener = object : MemoDao.OnDataChageListener {
+            override fun onDataChanged() = adapter.notifyDataSetChanged()
+        }
+
+
         recyclerView = findViewById(R.id.memolist_recyclerview) as RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
@@ -94,12 +97,6 @@ class MemoListActivity : Activity() {
 
         val createdTime: TextView by lazy {
             view.findViewById(R.id.memo_list_item_created_time) as TextView
-        }
-    }
-
-    class OnDataChangeListenerImpl(val adapter: MemoListAdapter) : OnDataChageListener {
-        override fun onDataChanged() {
-            adapter.notifyDataSetChanged()
         }
     }
 }
