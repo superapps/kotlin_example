@@ -1,6 +1,5 @@
 package com.hyeyoung.memo
 
-import java.util.*
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.properties.Delegates
 
@@ -13,7 +12,7 @@ class MemoDao() {
         onDataChangeListener?.onDataChanged()
     }
 
-    val list = ArrayList<Memo>()
+    val list: MutableList<Memo> = mutableListOf()
     val lock = ReentrantLock()
 
 
@@ -51,9 +50,7 @@ class MemoDao() {
 
     fun transformTitle(transform: (String) -> String) {
         lock(lock) {
-            for (item in list) {
-                item.title = transform(item.title)
-            }
+            list.map { it.title = transform(it.title) }
             size = list.size
         }
     }
