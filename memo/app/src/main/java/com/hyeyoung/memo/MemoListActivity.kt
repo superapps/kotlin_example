@@ -80,9 +80,10 @@ class MemoListActivity : Activity() {
                 memoDao.remove(position)
                 true
             }
-            holder?.titleView?.text = memoDao.list.get(position).title
-            holder?.contentView?.text = memoDao.list.get(position).content
-            holder?.createdTime?.text = memoDao.list.get(position).createdTime.toString()
+            val (createdTime, title, content) = memoDao.list[position];
+            holder?.titleView?.text = title
+            holder?.contentView?.text = content
+            holder?.createdTime?.text = createdTime.toString()
         }
     }
 
